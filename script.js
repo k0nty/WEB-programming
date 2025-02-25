@@ -71,15 +71,3 @@ function triangle(a1, t1, a2, t2){
     console.log(`beta = ${beta}°`);
     return "success";
 }
-
-console.log("Тест 1: Коректні дані (leg + hypotenuse)");
-console.log(triangle(7, "leg", 18, "hypotenuse"));
-
-console.log("\nТест 2: Некоректний кут (opposite angle + leg)");
-console.log(triangle(90, "opposite angle", 5, "leg"));
-
-console.log("\nТест 3: Катет >= гіпотенуза");
-console.log(triangle(5, "leg", 3, "hypotenuse"));
-
-console.log("\nТест 4: Від’ємне значення");
-console.log(triangle(-1, "leg", 4, "leg"));
