@@ -64,10 +64,16 @@ function triangle(a1, t1, a2, t2){
 
     if (((t1 == types[0] && t2 == types[1]) || (t1 == types[1] && t2 == types[0])) && a >= c) return "Invalid hypotenuse";
 
+    a = Number(a.toFixed(4));
+    b = Number(b.toFixed(4));
+    c = Number(c.toFixed(4));
+    alpha = Number(alpha.toFixed(4));
+    beta = Number(beta.toFixed(4));
+
     console.log(`a = ${a}`);
     console.log(`b = ${b}`);
     console.log(`c = ${c}`);
-    console.log(`alpha = ${alpha}°`);
-    console.log(`beta = ${beta}°`);
+    console.log(`alpha = ${alpha}`);
+    console.log(`beta = ${beta}`);
     return "success";
 }
