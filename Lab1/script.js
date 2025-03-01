@@ -40,7 +40,7 @@ function triangle(a1, t1, a2, t2){
     //opposite angle    leg
     if((t1 == types[0] && t2 == types[3]) || (t1 == types[3] && t2 == types[0])){
         a = t1 == types[0] ? a1 : a2;
-        alpha = t1 === types[3] ? a1 : a2;
+        alpha = t1 == types[3] ? a1 : a2;
         c = a / Math.sin(toRadians(alpha));
         b = a / Math.tan(toRadians(alpha));
         beta = 90 - alpha;
@@ -48,7 +48,7 @@ function triangle(a1, t1, a2, t2){
     //adjacent angle    leg
     if((t1 == types[0] && t2 == types[2]) || (t1 == types[2] && t2 == types[0])){
         b = t1 == types[0] ? a1 : a2;
-        beta = t1 === types[2] ? a1 : a2;
+        beta = t1 == types[2] ? a1 : a2;
         c = b / Math.cos(toRadians(beta));
         a = b * Math.tan(toRadians(beta));
         alpha = 90 - beta;
