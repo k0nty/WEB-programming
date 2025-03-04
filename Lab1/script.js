@@ -1,4 +1,28 @@
-const types = ["leg", "hypotenuse", "adjacent angle", "opposite angle", "angle"];
+console.log(`
+    Функція розв'язує прямокутний трикутник за двома заданими елементами.
+    Порядок аргументів: triangle(значення1, "тип1", значення2, "тип2")
+    
+    Доступні типи:
+    - "leg" – катет
+    - "hypotenuse" – гіпотенуза
+    - "adjacent angle" – прилеглий до катета кут (у градусах)
+    - "opposite angle" – протилежний до катета кут (у градусах)
+    - "angle" – один із гострих кутів (у градусах, коли задана гіпотенуза)
+    
+    Приклади виклику:
+    - triangle(3, "leg", 4, "hypotenuse") – катет і гіпотенуза
+    - triangle(5, "leg", 6, "leg") – два катети
+    - triangle(30, "opposite angle", 4, "leg") – протилежний кут і катет
+    - triangle(8, "hypotenuse", 45, "angle") – гіпотенуза і кут
+    
+    Повернені значення:
+    - "success" – обчислення успішне, результат виведено в консоль
+    - "failed" – некоректний тип аргументу
+    - "Zero or negative input" – введено нуль або від’ємне значення
+    - "Invalid angle" – кут <= 0° або >= 90°
+    - "Invalid hypotenuse" – катет >= гіпотенузи
+`);
+
 
 function toRadians(deg){
     return deg * (Math.PI / 180);
@@ -9,6 +33,8 @@ function toDegrees(rad){
 }
 
 function triangle(a1, t1, a2, t2){
+    const types = ["leg", "hypotenuse", "adjacent angle", "opposite angle", "angle"];
+
     if (!types.includes(t1) || !types.includes(t2)) {
         return "failed";
     }
