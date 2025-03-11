@@ -99,8 +99,8 @@ class Rhombus extends Square {
 
     set beta(value) {
         if (Number.isInteger(value) && value > 0 && value < 90) {
-            this.beta = value;
-            this.alpha = 180 - value;
+            this._beta = value;
+            this._alpha = 180 - value;
         } else {
             return "Гострий кут beta має бути цілим числом від 1 до 90";
         }
