@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <script src="script.js"></script>
+    <script>
+        const regularArray = Array.from({length: 100}, () => Math.floor(Math.random() * 1000));
+        
+        const sparseArray = Array(100);
+        for(let i = 0; i < 50; i++) {
+            sparseArray[Math.floor(Math.random() * 100)] = Math.floor(Math.random() * 1000);
+        }
+
+        console.log("=== Regular Array Sorting ===");
+        console.log("Original:", regularArray);
+        console.log("Bubble Sort:", MySortLib.bubbleSort(regularArray));
+        console.log("Selection Sort:", MySortLib.selectionSort(regularArray));
+        console.log("Insertion Sort:", MySortLib.insertionSort(regularArray));
+        console.log("Shell Sort:", MySortLib.shellSort(regularArray));
+        console.log("Quick Sort:", MySortLib.quickSort(regularArray));
+
+        console.log("\n=== Sparse Array Sorting ===");
+        console.log("Original:", sparseArray);
+        console.log("Bubble Sort:", MySortLib.bubbleSort(sparseArray));
+        console.log("Selection Sort:", MySortLib.selectionSort(sparseArray));
+        console.log("Insertion Sort:", MySortLib.insertionSort(sparseArray));
+        console.log("Shell Sort:", MySortLib.shellSort(sparseArray));
+        console.log("Quick Sort:", MySortLib.quickSort(sparseArray));
+    </script>
+</body>
+</html>
