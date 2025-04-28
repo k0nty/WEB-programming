@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Pixel Hunt</title>
+</head>
+<body>
+    <main id="main-menu">
+        <h1 class="center">Pixel Hunt</h1>
+        <p class="info">Welcome to the Pixel Hunt game! Click on the pixels to find the hidden items.</p>
+        <div class="choose" id="menu">
+            <p class="info">Choose difficulty:</p>
+            <select class="level-button" id="choose-difficulty">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+            <p class="info">Choose color</p>
+            <select class="level-button" id="choose-color">
+                <option value="red">Red</option>
+                <option value="green">Green</option>
+                <option value="black">Black</option>
+            </select>
+            <button class="level-button" id="start-game">Start Game</button>
+        </div>
+    </main>
+    <div id="game-elements" style="display: none;">
+        <div id="score" class="info">Score: 0</div>
+        <div id="time" class="info">Time: 30</div>
+        <div id="game-container">
+            <div id="target"></div>
+        </div>
+        <button class="level-button" id="restart-game">Restart</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+h1 {
+    text-align: center;
+}
+.info {
+    text-align: center;
+    font-size: 20px;
+    color: #333;
+}
+.choose > .info {
+    font-size: 24px;
+    font-weight: bold;
+}
+#start-game, #restart-game {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#start-game:hover, #restart-game:hover {
+    background-color: #45a049;
+}
+#choose-color {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#choose-color:hover {
+    background-color: #007399;
+}
+#choose-difficulty {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#choose-difficulty:hover {
+    background-color: #e53935;
+}
+#game-container {
+    position: relative;
+    width: 90%;
+    height: 500px;
+    background-color: #ffffff;
+    margin: 20px auto;
+    overflow: hidden;
+    cursor: crosshair;
+}
+#target {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+}
+#game-elements {
+    text-align: center;
+}
