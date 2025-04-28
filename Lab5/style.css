@@ -59,7 +59,6 @@ h1 {
     background-color: #ffffff;
     margin: 20px auto;
     overflow: hidden;
-    cursor: crosshair;
 }
 #target {
     position: absolute;
