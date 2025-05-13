@@ -11,6 +11,7 @@ let userMoves = 0;
 let timer = 0;
 let timerInterval;
 let usedFiles = [];
+let lastMove;
 
 const allConfigs = ['data/data1.json', 'data/data2.json', 'data/data3.json'];
 
@@ -26,9 +27,15 @@ function drawBoard(state) {
                 cell.classList.add('on');
             }
             cell.addEventListener('click', () => {
+                const isUndo = lastMove && lastMove.i === i && lastMove.j === j;
                 toggle(i, j);
-                userMoves++;
+                if (isUndo && userMoves > 0) {
+                    userMoves;
+                } else {
+                    userMoves++;
+                }
                 userMovesElem.textContent = userMoves;
+                lastMove = { i, j };
                 checkWin()
             });
             boardElem.appendChild(cell);
