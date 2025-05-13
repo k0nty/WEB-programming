@@ -1,0 +1,26 @@
+body {
+    font-family: sans-serif;
+    text-align: center;
+}
+  
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(5, 70px);
+    grid-template-rows: repeat(5, 70px);
+    margin: 20px auto;
+    width: max-content;
+}
+  
+.cell {
+    width: 70px;
+    height: 70px;
+    background-color: #023600;
+    border-radius: 7px;
+    border: 1px solid #ffffff;
+    cursor: pointer;
+}
+  
+.cell.on {
+    background-color: #06b000;
+}
+  
