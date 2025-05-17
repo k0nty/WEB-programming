@@ -1,0 +1,47 @@
+{
+  "category_name": "Books",
+  "items": [
+    {
+      "id": 1,
+      "name": "Роман",
+      "shortname": "novel",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "price": 500
+    },
+    {
+      "id": 2,
+      "name": "Наукова література",
+      "shortname": "science",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "price": 450
+    },
+    {
+      "id": 3,
+      "name": "Дитяча книга",
+      "shortname": "children",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "price": 250
+    },
+    {
+      "id": 4,
+      "name": "Біографія",
+      "shortname": "biography",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "price": 200
+    },
+    {
+      "id": 5,
+      "name": "Фантастика",
+      "shortname": "sci-fi",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "price": 550
+    },
+    {
+      "id": 6,
+      "name": "Поезія",
+      "shortname": "poetry",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "price": 250
+    }
+  ]
+}

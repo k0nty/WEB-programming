@@ -1,0 +1,52 @@
+body {
+    font-family: sans-serif;
+    text-align: center;
+}
+  
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(5, 70px);
+    grid-template-rows: repeat(5, 70px);
+    margin: 20px auto;
+    width: max-content;
+}
+  
+.cell {
+    width: 70px;
+    height: 70px;
+    background-color: #023600;
+    border-radius: 7px;
+    border: 1px solid #ffffff;
+    cursor: pointer;
+}
+  
+.cell.on {
+    background-color: #06b000;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #000000;
+    border: 2px solid #ffffff;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    margin: 0 10px;
+}
+
+button:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+button:disabled {
+    background-color: #2a2a2a;
+    color: #999999;
+    cursor: not-allowed;
+}
+
+#controls {
+    margin: 20px 0;
+}

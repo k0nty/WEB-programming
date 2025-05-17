@@ -1,0 +1,33 @@
+{
+  "category_name": "Electronics",
+  "items": [
+    {
+      "id": 1,
+      "name": "Смартфон",
+      "shortname": "smartphone",
+      "description": "Lorem ipsum dolor sit amet.",
+      "price": 16000
+    },
+    {
+      "id": 2,
+      "name": "Ноутбук",
+      "shortname": "laptop",
+      "description": "Lorem ipsum dolor sit amet.",
+      "price": 37000
+    },
+    {
+      "id": 3,
+      "name": "Навушники",
+      "shortname": "headphones",
+      "description": "Lorem ipsum dolor sit amet.",
+      "price": 4000
+    },
+    {
+      "id": 4,
+      "name": "Планшет",
+      "shortname": "tablet",
+      "description": "Lorem ipsum dolor sit amet.",
+      "price": 12000
+    }
+  ]
+}
