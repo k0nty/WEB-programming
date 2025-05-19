@@ -1,0 +1,40 @@
+{
+  "category_name": "Samsung",
+  "items": [
+    {
+      "id": 1,
+      "name": "Galaxy S23 Ultra",
+      "shortname": "s23ultra",
+      "description": "Lorem ipsum dolor sit amet.",
+      "price": 50000
+    },
+    {
+      "id": 2,
+      "name": "Galaxy S23",
+      "shortname": "s23",
+      "description": "Lorem ipsum dolor sit amet.",
+      "price": 30000
+    },
+    {
+      "id": 3,
+      "name": "Galaxy A54",
+      "shortname": "a54",
+      "description": "Lorem ipsum dolor sit amet.",
+      "price": 15000
+    },
+    {
+      "id": 4,
+      "name": "Galaxy Z Fold 5",
+      "shortname": "zfold5",
+      "description": "Lorem ipsum dolor sit amet.",
+      "price": 70000
+    },
+    {
+      "id": 5,
+      "name": "Galaxy A14",
+      "shortname": "a14",
+      "description": "Lorem ipsum dolor sit amet.",
+      "price": 8000
+    }
+  ]
+}

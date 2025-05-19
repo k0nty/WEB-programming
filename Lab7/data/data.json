@@ -1,20 +1,20 @@
 [
-    {
-      "id": 1,
-      "name": "Електроніка",
-      "shortname": "electronics",
-      "notes": "Lorem ipsum dolor sit amet."
-    },
-    {
-      "id": 2,
-      "name": "Одяг",
-      "shortname": "clothing",
-      "notes": ""
-    },
-    {
-      "id": 3,
-      "name": "Книги",
-      "shortname": "books",
-      "notes": "Lorem ipsum dolor sit amet."
-    }
+  {
+    "id": 1,
+    "name": "Apple",
+    "shortname": "apple",
+    "notes": "Lorem ipsum dolor sit amet."
+  },
+  {
+    "id": 2,
+    "name": "Samsung",
+    "shortname": "samsung",
+    "notes": "Lorem ipsum dolor sit amet."
+  },
+  {
+    "id": 3,
+    "name": "Xiaomi",
+    "shortname": "xiaomi",
+    "notes": "Lorem ipsum dolor sit amet."
+  }
 ]

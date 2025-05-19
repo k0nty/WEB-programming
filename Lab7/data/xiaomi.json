@@ -1,0 +1,33 @@
+{
+  "category_name": "Xiaomi",
+  "items": [
+    {
+      "id": 1,
+      "name": "Xiaomi 13 Pro",
+      "shortname": "13pro",
+      "description": "Lorem ipsum dolor sit amet.",
+      "price": 36000
+    },
+    {
+      "id": 2,
+      "name": "Redmi Note 12 Pro",
+      "shortname": "note12pro",
+      "description": "Lorem ipsum dolor sit amet.",
+      "price": 15000
+    },
+    {
+      "id": 3,
+      "name": "Poco F5",
+      "shortname": "poco5",
+      "description": "Lorem ipsum dolor sit amet.",
+      "price": 16500
+    },
+    {
+      "id": 4,
+      "name": "Redmi 12",
+      "shortname": "redmi12",
+      "description": "Lorem ipsum dolor sit amet.",
+      "price": 7000
+    }
+  ]
+}
