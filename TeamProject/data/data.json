@@ -1,0 +1,28 @@
+{
+  "categories": [
+    {
+      "name": "Вінілові платівки",
+      "data_file": "vinyls.json"
+    },
+    {
+      "name": "Ретро електроніка",
+      "data_file": "electronics.json"
+    },
+    {
+      "name": "Вінтажний одяг",
+      "data_file": "clothing.json"
+    },
+    {
+      "name": "Ретро меблі",
+      "data_file": "furniture.json"
+    },
+    {
+      "name": "Аксесуари",
+      "data_file": "accessories.json"
+    },
+    {
+      "name": "Іграшки",
+      "data_file": "toys.json"
+    }
+  ]
+}

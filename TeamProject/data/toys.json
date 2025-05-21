@@ -1,0 +1,25 @@
+{
+  "name": "Іграшки",
+  "items": [
+    {
+      "name": "Тамагочі",
+      "description": "Електронна іграшка 1990-х у робочому стані.",
+      "image": "https://placehold.co/300x300?text=Tamagotchi"
+    },
+    {
+      "name": "Конструктор LEGO 1980-х",
+      "description": "Набір для створення ретро-автомобілів.",
+      "image": "https://placehold.co/300x300?text=LEGO+Set"
+    },
+    {
+      "name": "Металева машинка",
+      "description": "Колекційна модель автомобіля 1960-х.",
+      "image": "https://placehold.co/300x300?text=Toy+Car"
+    },
+    {
+      "name": "Лялька Barbie 1970-х",
+      "description": "Вінтажна лялька в оригінальному одязі.",
+      "image": "https://placehold.co/300x300?text=Barbie+Doll"
+    }
+  ]
+}

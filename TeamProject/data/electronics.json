@@ -1,0 +1,25 @@
+{
+  "name": "Ретро електроніка",
+  "items": [
+    {
+      "name": "Радіоприймач Tesla",
+      "description": "Радіоприймач 1960-х у робочому стані, дерев’яний корпус.",
+      "image": "https://placehold.co/300x300?text=Tesla+Radio"
+    },
+    {
+      "name": "Патефон Columbia",
+      "description": "Вінтажний патефон 1940-х із ручним заводом.",
+      "image": "https://placehold.co/300x300?text=Columbia+Gramophone"
+    },
+    {
+      "name": "Телевізор Krim 218",
+      "description": "Радянський телевізор 1970-х, декоративний стан.",
+      "image": "https://placehold.co/300x300?text=Krim+TV"
+    },
+    {
+      "name": "Портативний магнітофон Sony",
+      "description": "Касетний магнітофон 1980-х у стилі Walkman.",
+      "image": "https://placehold.co/300x300?text=Sony+Walkman"
+    }
+  ]
+}

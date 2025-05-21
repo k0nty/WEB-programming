@@ -1,0 +1,25 @@
+{
+  "name": "Вінтажний одяг",
+  "items": [
+    {
+      "name": "Джинси Levi's 501",
+      "description": "Класичні джинси 1980-х, прямий крій.",
+      "image": "https://placehold.co/300x300?text=Levis+501"
+    },
+    {
+      "name": "Сукня 1950-х",
+      "description": "Елегантна сукня в стилі New Look від Dior.",
+      "image": "https://placehold.co/300x300?text=1950s+Dress"
+    },
+    {
+      "name": "Шкіряна куртка 1970-х",
+      "description": "Чоловіча куртка в стилі рок-н-рол.",
+      "image": "https://placehold.co/300x300?text=Leather+Jacket"
+    },
+    {
+      "name": "Сорочка з принтом 1960-х",
+      "description": "Яскрава сорочка з психоделічним візерунком.",
+      "image": "https://placehold.co/300x300?text=Psychedelic+Shirt"
+    }
+  ]
+}
