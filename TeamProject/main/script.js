@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const greeting = document.getElementById('greeting');
   const categoryFilter = document.getElementById('category-filter');
   const catalogContent = document.getElementById('catalog-content');
+  const header = document.querySelector('header');
+  
   let allItems = [];
 
   // Hamburger-меню для мобільних
@@ -30,7 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (targetSection) {
         targetSection.classList.remove('hidden');
       }
-      if (sectionId !== 'catalog') {
+      if (sectionId === 'catalog') {
+        if (header) header.classList.add('hidden');
+      } else {
+        if (header) header.classList.remove('hidden');
         if (searchInput) searchInput.value = '';
         if (greeting) greeting.textContent = '';
         displayCatalog(allItems);
@@ -43,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (searchInput) {
     searchInput.addEventListener('input', () => {
       const query = searchInput.value.toLowerCase();
-      if (greeting) greeting.textContent = query ? `Шукаємо: ${query}` : '';
+      // if (greeting) greeting.textContent = query ? `Шукаємо: ${query}` : '';
       filterCatalog(query);
     });
   }
@@ -66,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Генерація кнопок категорій
         data.categories.forEach(category => {
           const btn = document.createElement('button');
-          btn.className = 'category-btn bg-teal-500 text-white px-4 py-2 rounded hover:bg-teal-600';
+          btn.className = 'category-btn btn-color1 text-white px-4 py-2 rounded';
           btn.dataset.category = category.data_file;
           btn.textContent = category.name;
           btn.addEventListener('click', () => {
@@ -81,7 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
           fetch(`../data/${category.data_file}`)
             .then(response => response.json())
             .then(categoryData => {
-              console.log(`Дані з ${category.data_file}:`, categoryData);
               if (categoryData.subcategories) {
                 categoryData.subcategories.forEach(sub => {
                   sub.items.forEach(item => {
@@ -107,9 +111,9 @@ document.addEventListener('DOMContentLoaded', () => {
             displayCatalog(allItems);
             resetCategoryButtons();
           })
-          .catch(error => console.error('Помилка обробки даних:', error));
+          .catch(error => console.error(error));
       })
-      .catch(error => console.error('Помилка завантаження data.json:', error));
+      .catch(error => console.error(error));
   }
 
   // Функція для відображення каталогу
@@ -120,7 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     catalogContent.innerHTML = '';
     if (items.length === 0) {
-      console.warn('Масив items порожній');
       catalogContent.innerHTML = '<p class="text-gray-500">Товари не знайдено</p>';
       return;
     }
@@ -130,10 +133,14 @@ document.addEventListener('DOMContentLoaded', () => {
       itemElement.dataset.category = item.category;
       itemElement.dataset.subcategory = item.subcategory || '';
       itemElement.innerHTML = `
-        <img src="${item.image}" alt="${item.name}" class="w-full h-48 object-cover rounded">
-        <h3 class="text-lg font-bold">${item.name}</h3>
-        <p>${item.description}</p>
-        ${item.subcategory ? `<p class="text-sm text-gray-500">${item.subcategory}</p>` : ''}
+      <div class="items-container">
+        <img src="${item.image}" alt="${item.name}" class="w-full h-48 object-cover rounded item-image">
+        <div class="item-text-container">
+          <h3 class="text-lg font-bold">${item.name}</h3>
+          <p>${item.description}</p>
+          ${item.subcategory ? `<p class="text-sm text-gray-500">${item.subcategory}</p>` : ''}
+        </div>
+      </div>
       `;
       catalogContent.appendChild(itemElement);
     });
@@ -141,13 +148,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Фільтрація за категорією
   function filterByCategory(dataFile) {
-    console.log('filterByCategory викликано з dataFile:', dataFile);
     const items = dataFile === 'all' ? allItems : allItems.filter(item => item.category === getCategoryName(dataFile));
-    console.log('Відфільтровані товари:', items);
     displayCatalog(items);
     document.querySelectorAll('.category-btn').forEach(btn => {
-      btn.classList.toggle('bg-teal-700', btn.dataset.category === dataFile);
-      btn.classList.toggle('bg-teal-500', btn.dataset.category !== dataFile);
+      btn.classList.toggle('btn-color1', btn.dataset.category === dataFile);
+      btn.classList.toggle('btn-color2', btn.dataset.category !== dataFile);
     });
   }
 
@@ -185,12 +190,12 @@ document.addEventListener('DOMContentLoaded', () => {
   function resetCategoryButtons() {
     const buttons = document.querySelectorAll('.category-btn');
     buttons.forEach(btn => {
-      btn.classList.remove('bg-teal-700');
-      btn.classList.add('bg-teal-500');
+      btn.classList.remove('btn-color1');
+      btn.classList.add('btn-color2');
     });
     const allButton = document.querySelector('.category-btn[data-category="all"]');
     if (allButton) {
-      allButton.classList.add('bg-teal-700');
+      allButton.classList.add('btn-color1');
     }
   }
 });
