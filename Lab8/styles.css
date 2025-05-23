@@ -140,7 +140,7 @@ body {
     }
 
     .nav-menu.active {
-        max-height: 300px; /* Достатньо для вміщення меню */
+        max-height: 300px;
         opacity: 1;
         transform: translateY(0);
     }
