@@ -12,7 +12,7 @@ const nextBtn = document.getElementById('next-btn');
 const indicators = document.querySelectorAll('.indicator');
 let currentSlide = 0;
 const totalSlides = slides.length;
-let autoSlideInterval;
+let autoSlide;
 
 function showSlide(index) {
     if (index >= totalSlides) index = 0;
@@ -21,19 +21,19 @@ function showSlide(index) {
 
     carouselSlides.style.transform = `translateX(-${currentSlide * 100}%)`;
     
-    indicators.forEach((indicator, i) => {
-        indicator.classList.toggle('active', i === currentSlide);
+    indicators.forEach((indicator, index) => {
+        indicator.classList.toggle('active', index === currentSlide);
     });
 }
 
 function startAutoSlide() {
-    autoSlideInterval = setInterval(() => {
+    autoSlide = setInterval(() => {
         showSlide(currentSlide + 1);
     }, 5000);
 }
 
 function stopAutoSlide() {
-    clearInterval(autoSlideInterval);
+    clearInterval(autoSlide);
 }
 
 prevBtn.addEventListener('click', () => {

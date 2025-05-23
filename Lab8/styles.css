@@ -26,6 +26,7 @@ body {
     list-style: none;
     display: flex;
     justify-content: center;
+    z-index: 5;
 }
 
 .nav-menu li {
@@ -78,6 +79,7 @@ body {
     padding: 10px;
     cursor: pointer;
     font-size: 18px;
+    border-radius: 10px;
 }
 
 .prev {
@@ -123,7 +125,6 @@ body {
     }
 
     .nav-menu {
-        display: none;
         flex-direction: column;
         background-color: #333;
         position: absolute;
@@ -131,13 +132,15 @@ body {
         left: 0;
         width: 100%;
         padding: 10px 0;
+        max-height: 0;
+        overflow: hidden;
         opacity: 0;
         transform: translateY(-20px);
-        transition: opacity 0.3s ease, transform 0.3s ease;
+        transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
     }
 
     .nav-menu.active {
-        display: flex;
+        max-height: 300px; /* Достатньо для вміщення меню */
         opacity: 1;
         transform: translateY(0);
     }
