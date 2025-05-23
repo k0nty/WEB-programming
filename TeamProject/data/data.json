@@ -1,28 +1,24 @@
 {
   "categories": [
     {
-      "name": "Вінілові платівки",
-      "data_file": "vinyls.json"
+      "name": "Кружки",
+      "data_file": "mugs.json"
     },
     {
-      "name": "Ретро електроніка",
-      "data_file": "electronics.json"
+      "name": "Футболки",
+      "data_file": "tshirts.json"
     },
     {
-      "name": "Вінтажний одяг",
-      "data_file": "clothing.json"
+      "name": "Кепки",
+      "data_file": "caps.json"
     },
     {
-      "name": "Ретро меблі",
-      "data_file": "furniture.json"
+      "name": "Брелоки",
+      "data_file": "keychains.json"
     },
     {
-      "name": "Аксесуари",
-      "data_file": "accessories.json"
-    },
-    {
-      "name": "Іграшки",
-      "data_file": "toys.json"
+      "name": "Постери",
+      "data_file": "posters.json"
     }
   ]
 }

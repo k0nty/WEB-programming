@@ -1,0 +1,25 @@
+{
+  "name": "Постери",
+  "items": [
+    {
+      "name": "Постер Mario",
+      "description": "Постер із культовим рівнем Super Mario Bros.",
+      "image": "https://placehold.co/300x300?text=Mario+Poster"
+    },
+    {
+      "name": "Постер Pac-Man",
+      "description": "Постер із класичним лабіринтом Pac-Man.",
+      "image": "https://placehold.co/300x300?text=Pac-Man+Poster"
+    },
+    {
+      "name": "Постер Galaga",
+      "description": "Постер із космічною битвою Galaga.",
+      "image": "https://placehold.co/300x300?text=Galaga+Poster"
+    },
+    {
+      "name": "Постер Super Mario Bros. 3",
+      "description": "Постер із артом Super Mario Bros. 3.",
+      "image": "https://placehold.co/300x300?text=Super+Mario+3+Poster"
+    }
+  ]
+}

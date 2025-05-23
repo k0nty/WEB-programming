@@ -8,13 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const categoryFilter = document.getElementById('category-filter');
   const catalogContent = document.getElementById('catalog-content');
   const header = document.querySelector('header');
-  
   let allItems = [];
 
   // Hamburger-меню для мобільних
   if (hamburger && mobileMenu) {
     hamburger.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
+      mobileMenu.classList.toggle('active');
     });
   }
 
@@ -48,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (searchInput) {
     searchInput.addEventListener('input', () => {
       const query = searchInput.value.toLowerCase();
-      // if (greeting) greeting.textContent = query ? `Шукаємо: ${query}` : '';
       filterCatalog(query);
     });
   }
@@ -60,6 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log('Кнопка "Усі" натиснута');
       filterByCategory('all');
     });
+  } else {
+    console.warn('Кнопка "Усі" не знайдена');
   }
 
   // Завантаження даних
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Генерація кнопок категорій
         data.categories.forEach(category => {
           const btn = document.createElement('button');
-          btn.className = 'category-btn btn-color1 text-white px-4 py-2 rounded';
+          btn.className = 'category-btn btn-color2 text-white px-4 py-2 rounded rounded-md';
           btn.dataset.category = category.data_file;
           btn.textContent = category.name;
           btn.addEventListener('click', () => {
@@ -86,20 +86,11 @@ document.addEventListener('DOMContentLoaded', () => {
           fetch(`../data/${category.data_file}`)
             .then(response => response.json())
             .then(categoryData => {
-              if (categoryData.subcategories) {
-                categoryData.subcategories.forEach(sub => {
-                  sub.items.forEach(item => {
-                    item.category = categoryData.name;
-                    item.subcategory = sub.name;
-                    allItems.push(item);
-                  });
-                });
-              } else {
-                categoryData.items.forEach(item => {
-                  item.category = categoryData.name;
-                  allItems.push(item);
-                });
-              }
+              // Обробка товарів (без підкатегорій)
+              categoryData.items.forEach(item => {
+                item.category = categoryData.name;
+                allItems.push(item);
+              });
             })
             .catch(error => console.error(`Помилка завантаження ${category.data_file}:`, error))
         );
@@ -111,9 +102,11 @@ document.addEventListener('DOMContentLoaded', () => {
             displayCatalog(allItems);
             resetCategoryButtons();
           })
-          .catch(error => console.error(error));
+          .catch(error => console.error('Помилка обробки даних:', error));
       })
-      .catch(error => console.error(error));
+      .catch(error => console.error('Помилка завантаження data.json:', error));
+  } else {
+    console.error('categoryFilter або catalogContent не знайдено');
   }
 
   // Функція для відображення каталогу
@@ -124,6 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     catalogContent.innerHTML = '';
     if (items.length === 0) {
+      console.warn('Масив items порожній');
       catalogContent.innerHTML = '<p class="text-gray-500">Товари не знайдено</p>';
       return;
     }
@@ -131,16 +125,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const itemElement = document.createElement('div');
       itemElement.className = 'catalog-item';
       itemElement.dataset.category = item.category;
-      itemElement.dataset.subcategory = item.subcategory || '';
       itemElement.innerHTML = `
-      <div class="items-container">
-        <img src="${item.image}" alt="${item.name}" class="w-full h-48 object-cover rounded item-image">
-        <div class="item-text-container">
-          <h3 class="text-lg font-bold">${item.name}</h3>
-          <p>${item.description}</p>
-          ${item.subcategory ? `<p class="text-sm text-gray-500">${item.subcategory}</p>` : ''}
+        <div class="items-container">
+          <img src="${item.image}" alt="${item.name}" class="w-full h-48 object-cover item-image">
+          <div class="item-text-container">
+            <h3 class="text-lg font-bold">${item.name}</h3>
+            <p>${item.description}</p>
+          </div>
         </div>
-      </div>
       `;
       catalogContent.appendChild(itemElement);
     });
@@ -148,7 +140,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Фільтрація за категорією
   function filterByCategory(dataFile) {
+    console.log('filterByCategory викликано з dataFile:', dataFile);
     const items = dataFile === 'all' ? allItems : allItems.filter(item => item.category === getCategoryName(dataFile));
+    console.log('Відфільтровані товари:', items);
     displayCatalog(items);
     document.querySelectorAll('.category-btn').forEach(btn => {
       btn.classList.toggle('btn-color1', btn.dataset.category === dataFile);
@@ -162,13 +156,10 @@ document.addEventListener('DOMContentLoaded', () => {
     items.forEach(item => {
       const name = item.querySelector('h3')?.textContent.toLowerCase() || '';
       const description = item.querySelector('p')?.textContent.toLowerCase() || '';
-      const subcategory = item.dataset.subcategory.toLowerCase();
-      if (name.includes(query) || description.includes(query) || subcategory.includes(query)) {
+      if (name.includes(query) || description.includes(query)) {
         item.classList.remove('hidden');
-        item.classList.add('bg-yellow-100');
       } else {
         item.classList.add('hidden');
-        item.classList.remove('bg-yellow-100');
       }
     });
   }
@@ -176,12 +167,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Отримання назви категорії за файлом
   function getCategoryName(dataFile) {
     const categoryMap = {
-      'vinyls.json': 'Вінілові платівки',
-      'electronics.json': 'Ретро електроніка',
-      'clothing.json': 'Вінтажний одяг',
-      'furniture.json': 'Ретро меблі',
-      'accessories.json': 'Аксесуари',
-      'toys.json': 'Іграшки'
+      'mugs.json': 'Кружки',
+      'tshirts.json': 'Футболки',
+      'caps.json': 'Кепки',
+      'keychains.json': 'Брелоки',
+      'posters.json': 'Постери'
     };
     return categoryMap[dataFile] || '';
   }
@@ -196,6 +186,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const allButton = document.querySelector('.category-btn[data-category="all"]');
     if (allButton) {
       allButton.classList.add('btn-color1');
+    } else {
+      console.warn('Кнопка "Усі" не знайдена в resetCategoryButtons');
     }
   }
 });

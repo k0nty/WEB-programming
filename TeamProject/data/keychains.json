@@ -1,0 +1,20 @@
+{
+  "name": "Брелоки",
+  "items": [
+    {
+      "name": "Брелок Mario",
+      "description": "Металевий брелок у вигляді Маріо з грибком.",
+      "image": "https://placehold.co/300x300?text=Mario+Keychain"
+    },
+    {
+      "name": "Брелок Pac-Man",
+      "description": "Брелок із зображенням Pac-Man, що поїдає точки.",
+      "image": "https://placehold.co/300x300?text=Pac-Man+Keychain"
+    },
+    {
+      "name": "Брелок Galaga",
+      "description": "Брелок у вигляді космічного корабля Galaga.",
+      "image": "https://placehold.co/300x300?text=Galaga+Keychain"
+    }
+  ]
+}
