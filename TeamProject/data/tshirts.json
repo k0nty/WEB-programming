@@ -3,23 +3,23 @@
   "items": [
     {
       "name": "Футболка Mario",
-      "description": "Бавовняна футболка з 8-бітним зображенням Маріо.",
-      "image": "https://placehold.co/300x300?text=Mario+T-Shirt"
+      "description": "Бавовняна футболка з зображенням Mario.",
+      "image": "../assets/Tshirts/Mario.png"
     },
     {
       "name": "Футболка Pac-Man",
       "description": "Футболка з принтом лабіринту Pac-Man.",
-      "image": "https://placehold.co/300x300?text=Pac-Man+T-Shirt"
+      "image": "../assets/Tshirts/Pac-man.png"
     },
     {
       "name": "Футболка Galaga",
       "description": "Футболка з культовим дизайном Galaga 1980-х.",
-      "image": "https://placehold.co/300x300?text=Galaga+T-Shirt"
+      "image": "../assets/Tshirts/Galaga.png"
     },
     {
       "name": "Футболка Super Mario World",
-      "description": "Футболка з Йоші та Маріо з гри Super Mario World.",
-      "image": "https://placehold.co/300x300?text=Super+Mario+World+T-Shirt"
+      "description": "Футболка з Mario з гри Super Mario World.",
+      "image": "../assets/Tshirts/Super_Mario_World.png"
     }
   ]
 }

@@ -3,18 +3,18 @@
   "items": [
     {
       "name": "Кепка Mario",
-      "description": "Бейсболка з вишитим логотипом Super Mario.",
-      "image": "https://placehold.co/300x300?text=Mario+Cap"
+      "description": "Бейсболка з Super Mario.",
+      "image": "../assets/Caps/Super_Mario.png"
     },
     {
       "name": "Кепка Pac-Man",
-      "description": "Кепка з вишитим Pac-Man і привидами.",
-      "image": "https://placehold.co/300x300?text=Pac-Man+Cap"
+      "description": "Кепка з вишитим Pac-Man.",
+      "image": "../assets/Caps/Pac-man.png"
     },
     {
       "name": "Кепка Galaga",
       "description": "Кепка з ретро-принтом космічного корабля Galaga.",
-      "image": "https://placehold.co/300x300?text=Galaga+Cap"
+      "image": "../assets/Caps/Galaga.png"
     }
   ]
 }

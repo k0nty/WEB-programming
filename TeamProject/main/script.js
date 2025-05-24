@@ -127,7 +127,9 @@ document.addEventListener('DOMContentLoaded', () => {
       itemElement.dataset.category = item.category;
       itemElement.innerHTML = `
         <div class="items-container">
-          <img src="${item.image}" alt="${item.name}" class="w-full h-48 object-cover item-image">
+          <div class="flex justify-center items-center bg-white image-container">
+            <img src="${item.image}" alt="${item.name}" class="h-48 object-cover item-image">
+          </div>
           <div class="item-text-container">
             <h3 class="text-lg font-bold">${item.name}</h3>
             <p>${item.description}</p>
@@ -150,7 +152,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Фільтрація за пошуком
   function filterCatalog(query) {
     const items = document.querySelectorAll('.catalog-item');
     items.forEach(item => {
@@ -164,7 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Отримання назви категорії за файлом
   function getCategoryName(dataFile) {
     const categoryMap = {
       'mugs.json': 'Кружки',

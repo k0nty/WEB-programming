@@ -4,17 +4,17 @@
     {
       "name": "Кружка Mario",
       "description": "Керамічна кружка з принтом Super Mario Bros.",
-      "image": "https://placehold.co/300x300?text=Mario+Mug"
+      "image": "../assets/Mugs/Mario.png"
     },
     {
       "name": "Кружка Pac-Man",
-      "description": "Кружка з класичним дизайном Pac-Man і привидами.",
-      "image": "https://placehold.co/300x300?text=Pac-Man+Mug"
+      "description": "Кружка з класичним дизайном Pac-Man.",
+      "image": "../assets/Mugs/Pac-man.png"
     },
     {
       "name": "Кружка Galaga",
       "description": "Кружка з ретро-дизайном космічного корабля Galaga.",
-      "image": "https://placehold.co/300x300?text=Galaga+Mug"
+      "image": "../assets/Mugs/Galaga.png"
     }
   ]
 }
