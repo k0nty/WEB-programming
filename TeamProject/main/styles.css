@@ -1,66 +1,66 @@
-.main-background{
-    background-color: #CA7842;
+.main-background {
+  background-color: #CA7842;
 }
-.nav-background{
-    background-color: #4B352A;
+.nav-background {
+  background-color: #4B352A;
 }
-.footer-background{
-    background-color: #4B352A;
+.footer-background {
+  background-color: #4B352A;
 }
-.logo-container{
-    display: flex;
+.logo-container {
+  display: flex;
 }
-.logo{
-    width: 50px;
-    border-radius: 10%;
-    margin: 0 5% 0 0;
+.logo {
+  width: 50px;
+  border-radius: 10%;
+  margin: 0 5% 0 0;
 }
 #mobile-menu {
-    background-color: #2f211a;
-    border-radius: 20px;
-    overflow: hidden;
-    max-height: 0;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: all 0.3s ease-in-out;
+  background-color: #2f211a;
+  border-radius: 20px;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease-in-out;
 }
 #mobile-menu.active {
-    margin-top: 1.5rem;
-    padding: 1rem;
-    max-height: 200px;
-    opacity: 1;
-    transform: translateY(0);
+  margin-top: 1.5rem;
+  padding: 1rem;
+  max-height: 200px;
+  opacity: 1;
+  transform: translateY(0);
 }
-.menu-container{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-items: center;
+.menu-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-items: center;
 }
-.main-container{
-    min-height: 50vh;
+.main-container {
+  min-height: 50vh;
 }
-.text-color{
-    color: #F0F2BD;
+.text-color {
+  color: #F0F2BD;
 }
-.btn-color1{
-    background-color: #2f211a;
+.btn-color1 {
+  background-color: #2f211a;
 }
-.btn-color2{
-    background-color: #4B352A;
-    transition: all 0.2s linear;
+.btn-color2 {
+  background-color: #4B352A;
+  transition: all 0.2s linear;
 }
-.btn-color2:hover{
-    background-color: #6c4d3d;
+.btn-color2:hover {
+  background-color: #6c4d3d;
 }
-.items-container{
-    background: #F0F2BD;
-    border-radius: 20px;
-    height: 20rem;
+.items-container {
+  background: #F0F2BD;
+  border-radius: 20px;
+  height: 20rem;
 }
-.image-container{
-    border-radius: 20px 20px 0 0;
+.image-container {
+  border-radius: 20px 20px 0 0;
 }
-.item-text-container{
-    padding: 20px;
+.item-text-container {
+  padding: 20px;
 }

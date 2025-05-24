@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const catalogContent = document.getElementById('catalog-content');
   const header = document.querySelector('header');
   let allItems = [];
+  let gameInitialized = false;
 
   // Hamburger-меню для мобільних
   if (hamburger && mobileMenu) {
@@ -33,12 +34,20 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if (sectionId === 'catalog') {
         if (header) header.classList.add('hidden');
+        stopGame();
+      } else if (sectionId === 'game') {
+        if (header) header.classList.add('hidden');
+        if (!gameInitialized) {
+          initializeGame();
+          gameInitialized = true;
+        }
       } else {
         if (header) header.classList.remove('hidden');
         if (searchInput) searchInput.value = '';
         if (greeting) greeting.textContent = '';
         displayCatalog(allItems);
         resetCategoryButtons();
+        stopGame();
       }
     });
   });
@@ -68,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(response => response.json())
       .then(data => {
         console.log('Дані з data.json:', data);
-        // Генерація кнопок категорій
         data.categories.forEach(category => {
           const btn = document.createElement('button');
           btn.className = 'category-btn btn-color2 text-white px-4 py-2 rounded rounded-md';
@@ -80,13 +88,10 @@ document.addEventListener('DOMContentLoaded', () => {
           });
           categoryFilter.appendChild(btn);
         });
-
-        // Завантаження всіх даних категорій
         const fetchPromises = data.categories.map(category =>
           fetch(`../data/${category.data_file}`)
             .then(response => response.json())
             .then(categoryData => {
-              // Обробка товарів (без підкатегорій)
               categoryData.items.forEach(item => {
                 item.category = categoryData.name;
                 allItems.push(item);
@@ -94,8 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(error => console.error(`Помилка завантаження ${category.data_file}:`, error))
         );
-
-        // Відображення каталогу після завантаження всіх даних
         Promise.all(fetchPromises)
           .then(() => {
             console.log('Усі товари:', allItems);
@@ -152,6 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Фільтрація за пошуком
   function filterCatalog(query) {
     const items = document.querySelectorAll('.catalog-item');
     items.forEach(item => {
@@ -165,6 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Отримання назви категорії за файлом
   function getCategoryName(dataFile) {
     const categoryMap = {
       'mugs.json': 'Кружки',

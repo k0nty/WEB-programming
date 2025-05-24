@@ -3,59 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ретро Магазин</title>
+  <title>Ретро магазин</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Lobster&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../game/css/index.css">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="font-roboto main-background">
   <nav class="nav-background text-white p-4 w-full top-0 z-10">
     <div class="container mx-auto flex justify-between items-center">
       <div class="menu-container">
-        <img src="../assets/logo.png" class="logo" />
-
+        <img src="../assets/logo.png" class="logo" alt="Логотип" />
         <div class="md:hidden">
           <button id="hamburger" class="focus:outline-none">☰</button>
         </div>
-
         <ul id="nav-menu" class="hidden md:flex space-x-4">
           <li><a href="#home" class="nav-link hover:underline">Головна</a></li>
           <li><a href="#catalog" class="nav-link hover:underline">Каталог</a></li>
           <li><a href="#game" class="nav-link hover:underline">Гра</a></li>
         </ul>
       </div>
-
       <div class="flex items-center space-x-2">
         <input id="search" type="text" placeholder="Пошук..." class="p-2 rounded text-black">
         <span id="greeting" class="hidden md:block"></span>
       </div>
     </div>
-
     <ul id="mobile-menu" class="md:hidden">
-      <li><a href="#" class="nav-link block py-2 hover:underline">Головна</a></li>
-      <li><a href="#" class="nav-link block py-2 hover:underline">Каталог</a></li>
-      <li><a href="#" class="nav-link block py-2 hover:underline">Гра</a></li>
+      <li><a href="#home" class="nav-link block py-2 hover:underline">Головна</a></li>
+      <li><a href="#catalog" class="nav-link block py-2 hover:underline">Каталог</a></li>
+      <li><a href="#game" class="nav-link block py-2 hover:underline">Гра</a></li>
     </ul>
   </nav>
 
-
   <header class="container mx-auto mt-20 mb-8 text-center">
-    <h1 class="text-4xl text-color font-lobster">Ласкаво просимо до Ретро Магазину!</h1>
-    <p class="text-lg text-color">Знайдіть унікальні ретро речі для вашої колекції.</p>
+    <h1 class="text-4xl text-color font-lobster">Ласкаво просимо до Ретро Ігрового Мерчу!</h1>
+    <p class="text-lg text-color">Знайдіть унікальний мерч із Mario, Pac-Man, Galaga!</p>
   </header>
 
   <main class="main-container container mx-auto px-4">
     <section id="home" class="mb-8">
       <h2 class="text-2xl font-bold text-color mb-4">Про нас</h2>
-      <p class="text-color">Ретро Магазин пропонує унікальні предмети з минулого: від вінілових платівок до вінтажного одягу.</p>
+      <p class="text-color">Ретро Ігровий Мерч пропонує унікальні товари для фанатів ретро-ігор: кружки, футболки, кепки, брелоки, постери.</p>
     </section>
     <section id="catalog" class="mb-8 hidden mt-5">
       <h2 class="text-2xl font-bold text-color mb-4">Каталог</h2>
-
       <div id="category-filter" class="mb-4 flex flex-wrap gap-2">
-        <button class="category-btn text-white px-4 py-2 rounded" data-category="all">Усі</button>
+        <button class="category-btn text-white px-4 py-2 rounded rounded-md" data-category="all">Усі</button>
       </div>
       <div id="catalog-content" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    </section>
+    <section id="game" class="mb-8 hidden">
+      <h2 class="text-2xl font-bold text-color mb-4 mt-4">Galaga Shooter</h2>
+      <div class="game-container">
+        <div id="startScreen" class="start-screen">
+          <h1>Galaga Shooter</h1>
+          <div class="controls">
+            <label for="volume">Гучність:</label>
+            <input type="range" id="volume" min="0" max="1" step="0.1" value="0.5">
+            <label for="musicToggle">Фонова музика:</label>
+            <input type="checkbox" id="musicToggle" checked>
+          </div>
+          <button id="startButton">Погнали!!!</button>
+        </div>
+        <p id="score" class="score">Очки: 0</p>
+        <canvas id="gameCanvas"></canvas>
+        <div id="gameOver" class="game-over">
+          <h1>Гру Закінчено!</h1>
+          <p>Очки: <span id="finalScore">0</span></p>
+          <button onclick="restartGame()">Грати Знова</button>
+          <button onclick="returnToMenu()">Повернутися в меню</button>
+        </div>
+      </div>
     </section>
   </main>
 
@@ -63,11 +81,11 @@
     <div class="container mx-auto text-center">
       <p>Розробники: Команда Ретро</p>
       <p>Контакти: <a href="mailto:retroshop@example.com" class="underline">retroshop@example.com</a></p>
-      <p>© 2025 Ретро Магазин. Усі права захищено.</p>
+      <p>© 2025 Ретро Ігровий Мерч. Усі права захищено.</p>
     </div>
   </footer>
 
   <script src="script.js"></script>
-  <script src="game.js"></script>
+  <script src="../game/js/index.js"></script>
 </body>
 </html>
