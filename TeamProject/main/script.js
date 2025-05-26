@@ -11,6 +11,129 @@ document.addEventListener('DOMContentLoaded', () => {
   let allItems = [];
   let gameInitialized = false;
 
+  // Додайте в початок script.js, після ініціалізації змінних
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+const cartToggle = document.getElementById('cart-toggle');
+const cartContent = document.getElementById('cart-content');
+const cartItemsContainer = document.getElementById('cart-items');
+const cartTotal = document.getElementById('cart-total');
+const clearCartBtn = document.getElementById('clear-cart');
+const checkoutBtn = document.getElementById('checkout');
+
+// Відображення/приховування кошика
+if (cartToggle && cartContent) {
+  cartToggle.addEventListener('click', () => {
+    cartContent.classList.toggle('hidden');
+    updateCart();
+  });
+}
+
+// Додавання товару до кошика
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('add-to-cart-btn')) {
+    const item = JSON.parse(e.target.dataset.item);
+    addToCart(item);
+  }
+});
+
+// Очищення кошика
+if (clearCartBtn) {
+  clearCartBtn.addEventListener('click', () => {
+    cart = [];
+    saveCart();
+    updateCart();
+  });
+}
+
+// Оформлення замовлення (заглушка)
+if (checkoutBtn) {
+  checkoutBtn.addEventListener('click', () => {
+    alert('Функція оформлення замовлення в розробці!');
+  });
+}
+
+// Функція додавання товару до кошика
+function addToCart(item) {
+  const existingItem = cart.find(cartItem => cartItem.name === item.name);
+  if (existingItem) {
+    existingItem.quantity = (existingItem.quantity || 1) + 1;
+  } else {
+    cart.push({ ...item, quantity: 1 });
+  }
+  saveCart();
+  updateCart();
+}
+
+// Збереження кошика в localStorage
+function saveCart() {
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+// Оновлення відображення кошика
+function updateCart() {
+  if (!cartItemsContainer || !cartTotal || !cartToggle) return;
+
+  cartItemsContainer.innerHTML = '';
+  let total = 0;
+  cart.forEach((item, index) => {
+    total += item.price * (item.quantity || 1);
+    const cartItem = document.createElement('div');
+    cartItem.className = 'cart-item';
+    cartItem.innerHTML = `
+      <span>${item.name}</span>
+      <div class="flex items-center gap-2">
+        <button class="decrease-quantity" data-index="${index}">−</button>
+        <span>x${item.quantity || 1}</span>
+        <button class="increase-quantity" data-index="${index}">+</button>
+      </div>
+      <span>${item.price * (item.quantity || 1)} грн</span>
+      <button class="remove-from-cart" data-index="${index}">Видалити</button>
+    `;
+    cartItemsContainer.appendChild(cartItem);
+  });
+  cartTotal.textContent = `Разом: ${total} грн`;
+  document.getElementById('cart-count').textContent = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+
+  // Обробники для кнопок зміни кількості
+  document.querySelectorAll('.decrease-quantity').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const index = btn.dataset.index;
+      if (cart[index].quantity > 1) {
+        cart[index].quantity -= 1;
+      } else {
+        cart.splice(index, 1);
+      }
+      saveCart();
+      updateCart();
+    });
+  });
+
+  document.querySelectorAll('.increase-quantity').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const index = btn.dataset.index;
+      cart[index].quantity = (cart[index].quantity || 1) + 1;
+      saveCart();
+      updateCart();
+    });
+  });
+
+  // Обробники для кнопок видалення
+  document.querySelectorAll('.remove-from-cart').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const index = btn.dataset.index;
+      cart.splice(index, 1);
+      saveCart();
+      updateCart();
+    });
+  });
+}
+
+// Ініціалізація кошика при завантаженні
+updateCart();
+
+
+
   // Hamburger-меню для мобільних
   if (hamburger && mobileMenu) {
     hamburger.addEventListener('click', () => {
@@ -136,6 +259,8 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="item-text-container">
             <h3 class="text-lg font-bold">${item.name}</h3>
             <p>${item.description}</p>
+            <p class="text-lg font-semibold text-green-600">Ціна: ${item.price} грн</p>
+          <button class="add-to-cart-btn btn-color2 text-white px-4 py-2 rounded mt-2" data-item='${JSON.stringify(item)}'>Додати до кошика</button>
           </div>
         </div>
       `;

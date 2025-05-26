@@ -4,17 +4,20 @@
     {
       "name": "Кепка Mario",
       "description": "Бейсболка з Super Mario.",
-      "image": "../assets/Caps/Super_Mario.png"
+      "image": "../assets/Caps/Super_Mario.png",
+      "price": 420
     },
     {
       "name": "Кепка Pac-Man",
       "description": "Кепка з вишитим Pac-Man.",
-      "image": "../assets/Caps/Pac-man.png"
+      "image": "../assets/Caps/Pac-man.png",
+      "price": 420
     },
     {
       "name": "Кепка Galaga",
       "description": "Кепка з ретро-принтом космічного корабля Galaga.",
-      "image": "../assets/Caps/Galaga.png"
+      "image": "../assets/Caps/Galaga.png",
+      "price": 420
     }
   ]
 }

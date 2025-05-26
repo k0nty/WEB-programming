@@ -4,17 +4,20 @@
     {
       "name": "Брелок Mario",
       "description": "Металевий брелок з Mario.",
-      "image": "../assets/Keychains/Mario.png"
+      "image": "../assets/Keychains/Mario.png",
+      "price": 420
     },
     {
       "name": "Брелок Pac-Man",
       "description": "Брелок із грою Pac-Man.",
-      "image": "../assets/Keychains/Pac-man.png"
+      "image": "../assets/Keychains/Pac-man.png",
+      "price": 420
     },
     {
       "name": "Брелок Galaga",
       "description": "Брелок у вигляді грального автомату з Galaga.",
-      "image": "../assets/Keychains/Galaga.png"
+      "image": "../assets/Keychains/Galaga.png",
+      "price": 420
     }
   ]
 }

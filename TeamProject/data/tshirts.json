@@ -4,22 +4,26 @@
     {
       "name": "Футболка Mario",
       "description": "Бавовняна футболка з зображенням Mario.",
-      "image": "../assets/Tshirts/Mario.png"
+      "image": "../assets/Tshirts/Mario.png",
+      "price": 450
     },
     {
       "name": "Футболка Pac-Man",
       "description": "Футболка з принтом лабіринту Pac-Man.",
-      "image": "../assets/Tshirts/Pac-man.png"
+      "image": "../assets/Tshirts/Pac-man.png",
+      "price": 400
     },
     {
       "name": "Футболка Galaga",
       "description": "Футболка з культовим дизайном Galaga 1980-х.",
-      "image": "../assets/Tshirts/Galaga.png"
+      "image": "../assets/Tshirts/Galaga.png",
+      "price": 420
     },
     {
       "name": "Футболка Super Mario World",
       "description": "Футболка з Mario з гри Super Mario World.",
-      "image": "../assets/Tshirts/Super_Mario_World.png"
+      "image": "../assets/Tshirts/Super_Mario_World.png",
+      "price": 450
     }
   ]
 }

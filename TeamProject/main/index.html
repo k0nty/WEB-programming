@@ -28,6 +28,24 @@
         <span id="greeting" class="hidden md:block"></span>
       </div>
     </div>
+
+      <div class="flex items-center space-x-2">
+        <input id="search" type="text" placeholder="Пошук..." class="p-2 rounded text-black">
+        <span id="greeting" class="hidden md:block"></span>
+        <div class="relative">
+          <button id="cart-toggle" class="text-white focus:outline-none">
+            🛒 <span id="cart-count" class="bg-red-500 text-white rounded-full px-2 py-1 text-xs">0</span>
+          </button>
+          <div id="cart-content" class="hidden absolute right-0 mt-2 w-80 bg-white text-black rounded shadow-lg p-4 z-20">
+            <h3 class="text-lg font-bold mb-2">Кошик</h3>
+            <div id="cart-items"></div>
+            <p id="cart-total" class="font-semibold mt-2">Разом: 0 грн</p>
+            <button id="clear-cart" class="btn-color2 text-white px-4 py-2 rounded mt-2 w-full">Очистити кошик</button>
+            <button id="checkout" class="btn-color2 text-white px-4 py-2 rounded mt-2 w-full">Оформити замовлення</button>
+          </div>
+        </div>
+      </div>
+
     <ul id="mobile-menu" class="md:hidden">
       <li><a href="#home" class="nav-link block py-2 hover:underline">Головна</a></li>
       <li><a href="#catalog" class="nav-link block py-2 hover:underline">Каталог</a></li>
