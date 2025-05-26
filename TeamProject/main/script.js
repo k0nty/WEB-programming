@@ -114,14 +114,16 @@ if (cancelCheckoutBtn) {
       const cartItem = document.createElement('div');
       cartItem.className = 'cart-item';
       cartItem.innerHTML = `
-        <span>${item.name}</span>
-        <div class="flex items-center gap-2">
-          <button class="decrease-quantity" data-index="${index}">−</button>
-          <span>x${item.quantity || 1}</span>
-          <button class="increase-quantity" data-index="${index}">+</button>
+      <div class="flex flex-col justify-center">
+        <span class="w-full text-center">${item.name}</span>
+        <div class="flex justify-between items-center gap-2">
+            <button class="decrease-quantity" data-index="${index}">−</button>
+            <span>x${item.quantity || 1}</span>
+            <button class="increase-quantity" data-index="${index}">+</button>
+            </div>
+            <span class="text-center w-full">${item.price * (item.quantity || 1)} грн</span>
         </div>
-        <span>${item.price * (item.quantity || 1)} грн</span>
-        <button class="remove-from-cart" data-index="${index}">Видалити</button>
+        <button class="remove-from-cart rounded-xl p-2" data-index="${index}">Видалити</button>
       `;
       cartItemsContainer.appendChild(cartItem);
     });
@@ -232,7 +234,6 @@ if (cancelCheckoutBtn) {
     fetch('../data/data.json')
       .then(response => response.json())
       .then(data => {
-        console.log('Дані з data.json:', data);
         data.categories.forEach(category => {
           const btn = document.createElement('button');
           btn.className = 'category-btn btn-color2 text-white px-4 py-2 rounded rounded-md';
@@ -269,38 +270,38 @@ if (cancelCheckoutBtn) {
   }
 
   function displayCatalog(items) {
-  if (!catalogContent) {
-    console.error('catalog-content не знайдено');
-    return;
-  }
-  catalogContent.innerHTML = '';
-  if (items.length === 0) {
-    console.warn('Масив items порожній');
-    catalogContent.innerHTML = '<p class="text-gray-500">Товари не знайдено</p>';
-    return;
-  }
-  items.forEach(item => {
-    const itemElement = document.createElement('div');
-    itemElement.className = 'catalog-item';
-    itemElement.dataset.category = item.category;
-    itemElement.innerHTML = `
-      <div class="items-container">
-        <div class="flex justify-center items-center bg-white image-container">
-          <img src="${item.image}" alt="${item.name}" class="h-48 object-cover item-image">
-        </div>
-        <div class="item-text-container">
-          <h3 class="text-lg font-bold">${item.name}</h3>
-          <p>${item.description}</p>
-          <div class="flex justify-between items-center mt-2">
-            <p class="price text-lg">Ціна: ${item.price} грн</p>
-            <button class="add-to-cart-btn btn-color2 text-white px-4 py-2 rounded" data-item='${JSON.stringify(item)}'>Додати до кошика</button>
+    if (!catalogContent) {
+      console.error('catalog-content не знайдено');
+      return;
+    }
+    catalogContent.innerHTML = '';
+    if (items.length === 0) {
+      console.warn('Масив items порожній');
+      catalogContent.innerHTML = '<p class="text-gray-500">Товари не знайдено</p>';
+      return;
+    }
+    items.forEach(item => {
+      const itemElement = document.createElement('div');
+      itemElement.className = 'catalog-item';
+      itemElement.dataset.category = item.category;
+      itemElement.innerHTML = `
+        <div class="items-container">
+          <div class="flex justify-center items-center bg-white image-container">
+            <img src="${item.image}" alt="${item.name}" class="h-48 object-cover item-image">
+          </div>
+          <div class="item-text-container">
+            <h3 class="text-lg font-bold">${item.name}</h3>
+            <p>${item.description}</p>
+            <div class="flex justify-between items-center mt-2">
+              <p class="price text-lg font-bold">Ціна: ${item.price} грн</p>
+              <button class="add-to-cart-btn btn-color2 text-white px-4 py-2 rounded-xl" data-item='${JSON.stringify(item)}'>Додати до кошика</button>
+            </div>
           </div>
         </div>
-      </div>
-    `;
-    catalogContent.appendChild(itemElement);
-  });
-}
+      `;
+      catalogContent.appendChild(itemElement);
+    });
+  }
 
   // Фільтрація за категорією
   function filterByCategory(dataFile) {
