@@ -56,23 +56,29 @@
 .items-container {
   background: #F0F2BD;
   border-radius: 20px;
-  height: 20rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-height: 24rem;
 }
 .image-container {
   border-radius: 20px 20px 0 0;
+  flex-shrink: 0;
 }
 .item-text-container {
   padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
+  flex-grow: 1;
 }
+.item-text-container h3,
 .item-text-container p {
-  margin: 8px 0;
+  margin-bottom: 8px;
+}
+
+.item-text-container .flex {
+  margin-top: auto; /* Розміщуємо ціну та кнопку внизу */
 }
 .add-to-cart-btn {
   transition: all 0.2s linear;
@@ -133,4 +139,18 @@
 .price {
   color: #000000; 
   font-weight: 600; 
+}
+
+#checkout-modal {
+  transition: all 0.3s ease-in-out;
+}
+#checkout-modal.hidden {
+  display: none;
+}
+#phone-number {
+  border: 1px solid #ccc;
+}
+#phone-number:focus {
+  outline: none;
+  border-color: #4B352A;
 }

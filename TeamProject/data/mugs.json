@@ -5,19 +5,19 @@
       "name": "Кружка Mario",
       "description": "Керамічна кружка з принтом Super Mario Bros.",
       "image": "../assets/Mugs/Mario.png",
-      "price": 420
+      "price": 510
     },
     {
       "name": "Кружка Pac-Man",
       "description": "Кружка з класичним дизайном Pac-Man.",
       "image": "../assets/Mugs/Pac-man.png",
-      "price": 420
+      "price": 510
     },
     {
       "name": "Кружка Galaga",
       "description": "Кружка з ретро-дизайном космічного корабля Galaga.",
       "image": "../assets/Mugs/Galaga.png",
-      "price": 420
+      "price": 550
     }
   ]
 }

@@ -5,25 +5,25 @@
       "name": "Постер Mario",
       "description": "Постер із Super Mario.",
       "image": "../assets/Posters/Mario.png",
-      "price": 420
+      "price": 300
     },
     {
       "name": "Постер Pac-Man",
       "description": "Постер із класичним лабіринтом Pac-Man.",
       "image": "../assets/Posters/Pac-man.png",
-      "price": 420
+      "price": 300
     },
     {
       "name": "Постер Galaga",
       "description": "Постер із космічною битвою Galaga.",
       "image": "../assets/Posters/Galaga.png",
-      "price": 420
+      "price": 350
     },
     {
       "name": "Постер Super Mario Bros. 3",
       "description": "Постер із артом Super Mario Bros. 3.",
       "image": "../assets/Posters/Super_Mario_Bros.png",
-      "price": 420
+      "price": 320
     }
   ]
 }
