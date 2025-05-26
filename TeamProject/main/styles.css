@@ -57,12 +57,19 @@
   background: #F0F2BD;
   border-radius: 20px;
   height: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .image-container {
   border-radius: 20px 20px 0 0;
 }
 .item-text-container {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 .item-text-container p {
   margin: 8px 0;
@@ -120,5 +127,10 @@
 }
 
 .flex.items-center.space-x-4 {
-  gap: 1rem; /* Додає відстань між полем пошуку та кошиком */
+  gap: 1rem;
+}
+
+.price {
+  color: #000000; 
+  font-weight: 600; 
 }

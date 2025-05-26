@@ -258,8 +258,10 @@ updateCart();
         <div class="item-text-container">
           <h3 class="text-lg font-bold">${item.name}</h3>
           <p>${item.description}</p>
-          <p class="text-lg font-semibold text-green-600">Ціна: ${item.price} грн</p>
-          <button class="add-to-cart-btn btn-color2 text-white px-4 py-2 rounded mt-2" data-item='${JSON.stringify(item)}'>Додати до кошика</button>
+          <div class="flex justify-between items-center mt-2">
+            <p class="price text-lg">Ціна: ${item.price} грн</p>
+            <button class="add-to-cart-btn btn-color2 text-white px-4 py-2 rounded" data-item='${JSON.stringify(item)}'>Додати до кошика</button>
+          </div>
         </div>
       </div>
     `;
