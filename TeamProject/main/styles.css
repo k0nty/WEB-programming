@@ -118,3 +118,7 @@
 .cart-item .increase-quantity:hover {
   background-color: #6c4d3d;
 }
+
+.flex.items-center.space-x-4 {
+  gap: 1rem; /* Додає відстань між полем пошуку та кошиком */
+}

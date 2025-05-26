@@ -235,38 +235,37 @@ updateCart();
     console.error('categoryFilter або catalogContent не знайдено');
   }
 
-  // Функція для відображення каталогу
   function displayCatalog(items) {
-    if (!catalogContent) {
-      console.error('catalog-content не знайдено');
-      return;
-    }
-    catalogContent.innerHTML = '';
-    if (items.length === 0) {
-      console.warn('Масив items порожній');
-      catalogContent.innerHTML = '<p class="text-gray-500">Товари не знайдено</p>';
-      return;
-    }
-    items.forEach(item => {
-      const itemElement = document.createElement('div');
-      itemElement.className = 'catalog-item';
-      itemElement.dataset.category = item.category;
-      itemElement.innerHTML = `
-        <div class="items-container">
-          <div class="flex justify-center items-center bg-white image-container">
-            <img src="${item.image}" alt="${item.name}" class="h-48 object-cover item-image">
-          </div>
-          <div class="item-text-container">
-            <h3 class="text-lg font-bold">${item.name}</h3>
-            <p>${item.description}</p>
-            <p class="text-lg font-semibold text-green-600">Ціна: ${item.price} грн</p>
-          <button class="add-to-cart-btn btn-color2 text-white px-4 py-2 rounded mt-2" data-item='${JSON.stringify(item)}'>Додати до кошика</button>
-          </div>
-        </div>
-      `;
-      catalogContent.appendChild(itemElement);
-    });
+  if (!catalogContent) {
+    console.error('catalog-content не знайдено');
+    return;
   }
+  catalogContent.innerHTML = '';
+  if (items.length === 0) {
+    console.warn('Масив items порожній');
+    catalogContent.innerHTML = '<p class="text-gray-500">Товари не знайдено</p>';
+    return;
+  }
+  items.forEach(item => {
+    const itemElement = document.createElement('div');
+    itemElement.className = 'catalog-item';
+    itemElement.dataset.category = item.category;
+    itemElement.innerHTML = `
+      <div class="items-container">
+        <div class="flex justify-center items-center bg-white image-container">
+          <img src="${item.image}" alt="${item.name}" class="h-48 object-cover item-image">
+        </div>
+        <div class="item-text-container">
+          <h3 class="text-lg font-bold">${item.name}</h3>
+          <p>${item.description}</p>
+          <p class="text-lg font-semibold text-green-600">Ціна: ${item.price} грн</p>
+          <button class="add-to-cart-btn btn-color2 text-white px-4 py-2 rounded mt-2" data-item='${JSON.stringify(item)}'>Додати до кошика</button>
+        </div>
+      </div>
+    `;
+    catalogContent.appendChild(itemElement);
+  });
+}
 
   // Фільтрація за категорією
   function filterByCategory(dataFile) {
