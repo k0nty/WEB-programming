@@ -12,10 +12,10 @@
 <body class="font-roboto main-background">
   <nav class="nav-background text-white p-4 w-full top-0 z-10">
     <div class="container mx-auto flex justify-between items-center">
-      <div class="menu-container">
-        <img src="../assets/logo.png" class="logo" alt="Логотип" />
+      <div class="menu-container mr-6">
+        <img src="../assets/logo.png" class="logo hidden md:block" alt="Логотип" />
         <div class="md:hidden">
-          <button id="hamburger" class="focus:outline-none">☰</button>
+          <button id="hamburger" class="focus:outline-none text-xl">☰</button>
         </div>
         <ul id="nav-menu" class="hidden md:flex space-x-4">
           <li><a href="#home" class="nav-link hover:underline">Головна</a></li>
@@ -23,8 +23,8 @@
           <li><a href="#game" class="nav-link hover:underline">Гра</a></li>
         </ul>
       </div>
-      <div class="flex items-center space-x-2">
-        <input id="search" type="text" placeholder="Пошук..." class="p-2 rounded text-black">
+      <div class="flex items-center">
+        <input id="search" type="text" placeholder="Пошук..." class="p-2 mr-5 rounded-xl w-25 text-black">
         <span id="greeting" class="hidden md:block"></span>
         <div class="relative">
             <button id="cart-toggle" class="text-white focus:outline-none">
@@ -38,10 +38,8 @@
               <button id="checkout" class="btn-color2 text-white px-4 py-2 rounded mt-2 w-full">Оформити замовлення</button>
             </div>
         </div>
-    </div>
-
-      
-
+      </div>
+    </div>  
     <ul id="mobile-menu" class="md:hidden">
       <li><a href="#home" class="nav-link block py-2 hover:underline">Головна</a></li>
       <li><a href="#catalog" class="nav-link block py-2 hover:underline">Каталог</a></li>

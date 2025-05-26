@@ -78,7 +78,7 @@
 }
 
 .item-text-container .flex {
-  margin-top: auto; /* Розміщуємо ціну та кнопку внизу */
+  margin-top: auto;
 }
 .add-to-cart-btn {
   transition: all 0.2s linear;
@@ -96,7 +96,6 @@
 #cart-toggle {
   display: flex;
   align-items: center;
-  gap: 8px;
 }
 #cart-count {
   position: absolute;
