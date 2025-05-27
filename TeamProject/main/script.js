@@ -105,9 +105,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const cartItem = document.createElement('div');
       cartItem.className = 'cart-item';
       cartItem.innerHTML = `
-      <div class="flex flex-col justify-center">
-        <span class="w-full text-center">${item.name}</span>
-        <div class="flex justify-between items-center gap-2">
+      <div class="flex flex-col justify-center cart-container">
+        <span class="w-full text-center mb-2">${item.name}</span>
+        <div class="flex justify-between items-center gap-2 mb-2">
             <button class="decrease-quantity" data-index="${index}">−</button>
             <span>x${item.quantity || 1}</span>
             <button class="increase-quantity" data-index="${index}">+</button>

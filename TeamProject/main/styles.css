@@ -108,10 +108,16 @@
 .cart-item button {
   background-color: #ef4444;
   color: white;
+  width: 30%;
 }
 .cart-item button:hover {
   background-color: #dc2626;
 }
+
+.cart-container {
+  width: 60%;
+}
+
 
 .cart-item .decrease-quantity,
 .cart-item .increase-quantity {
