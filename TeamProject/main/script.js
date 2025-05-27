@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Ініціалізація змінних
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobile-menu');
   const navLinks = document.querySelectorAll('.nav-link');
@@ -11,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let allItems = [];
   let gameInitialized = false;
 
-    // Додайте в початок script.js, після ініціалізації змінних
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
   const cartToggle = document.getElementById('cart-toggle');
@@ -24,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const phoneNumberInput = document.getElementById('phone-number');
   const confirmCheckoutBtn = document.getElementById('confirm-checkout');
   const cancelCheckoutBtn = document.getElementById('cancel-checkout');
-  // Відображення/приховування кошика
+ 
   if (cartToggle && cartContent) {
     cartToggle.addEventListener('click', () => {
       cartContent.classList.toggle('hidden');
@@ -32,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Додавання товару до кошика
   document.addEventListener('click', (e) => {
     if (e.target.classList.contains('add-to-cart-btn')) {
       const item = JSON.parse(e.target.dataset.item);
@@ -40,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Очищення кошика
   if (clearCartBtn) {
     clearCartBtn.addEventListener('click', () => {
       cart = [];
@@ -49,44 +45,41 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Відкриття модального вікна при натисканні на "Оформити замовлення"
-if (checkoutBtn) {
-  checkoutBtn.addEventListener('click', () => {
-    if (cart.length === 0) {
-      alert('Ваш кошик порожній!');
-      return;
-    }
-    checkoutModal.classList.remove('hidden');
-  });
-}
 
-// Підтвердження замовлення
-if (confirmCheckoutBtn) {
-  confirmCheckoutBtn.addEventListener('click', () => {
-    const phoneNumber = phoneNumberInput.value.trim();
-    if (phoneNumber === '') {
-      alert('Будь ласка, введіть номер телефону!');
-      return;
-    }
-    alert('Ми з вами зв’яжемося!');
-    checkoutModal.classList.add('hidden');
-    phoneNumberInput.value = ''; // Очищаємо поле
-    cart = []; // Очищаємо кошик після замовлення
-    saveCart();
-    updateCart();
-    cartContent.classList.add('hidden'); // Закриваємо кошик
-  });
-}
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', () => {
+      if (cart.length === 0) {
+        alert('Ваш кошик порожній!');
+        return;
+      }
+      checkoutModal.classList.remove('hidden');
+    });
+  }
 
-// Скасування замовлення
-if (cancelCheckoutBtn) {
-  cancelCheckoutBtn.addEventListener('click', () => {
-    checkoutModal.classList.add('hidden');
-    phoneNumberInput.value = ''; // Очищаємо поле
-  });
-}
+  if (confirmCheckoutBtn) {
+    confirmCheckoutBtn.addEventListener('click', () => {
+      const phoneNumber = phoneNumberInput.value.trim();
+      if (phoneNumber === '') {
+        alert('Будь ласка, введіть номер телефону!');
+        return;
+      }
+      alert('Ми з вами зв’яжемося!');
+      checkoutModal.classList.add('hidden');
+      phoneNumberInput.value = '';
+      cart = []; 
+      saveCart();
+      updateCart();
+      cartContent.classList.add('hidden');
+    });
+  }
 
-  // Функція додавання товару до кошика
+  if (cancelCheckoutBtn) {
+    cancelCheckoutBtn.addEventListener('click', () => {
+      checkoutModal.classList.add('hidden');
+      phoneNumberInput.value = '';
+    });
+  }
+
   function addToCart(item) {
     const existingItem = cart.find(cartItem => cartItem.name === item.name);
     if (existingItem) {
@@ -98,12 +91,10 @@ if (cancelCheckoutBtn) {
     updateCart();
   }
 
-  // Збереження кошика в localStorage
   function saveCart() {
     localStorage.setItem('cart', JSON.stringify(cart));
   }
 
-  // Оновлення відображення кошика
   function updateCart() {
     if (!cartItemsContainer || !cartTotal || !cartToggle) return;
 
@@ -130,7 +121,6 @@ if (cancelCheckoutBtn) {
     cartTotal.textContent = `Разом: ${total} грн`;
     document.getElementById('cart-count').textContent = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
 
-    // Обробники для кнопок зміни кількості
     document.querySelectorAll('.decrease-quantity').forEach(btn => {
       btn.addEventListener('click', () => {
         const index = btn.dataset.index;
@@ -153,7 +143,6 @@ if (cancelCheckoutBtn) {
       });
     });
 
-    // Обробники для кнопок видалення
     document.querySelectorAll('.remove-from-cart').forEach(btn => {
       btn.addEventListener('click', () => {
         const index = btn.dataset.index;
@@ -164,19 +153,14 @@ if (cancelCheckoutBtn) {
     });
   }
 
-  // Ініціалізація кошика при завантаженні
   updateCart();
 
-
-
-  // Hamburger-меню для мобільних
   if (hamburger && mobileMenu) {
     hamburger.addEventListener('click', () => {
       mobileMenu.classList.toggle('active');
     });
   }
 
-  // Навігація між секціями
   navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
@@ -210,7 +194,6 @@ if (cancelCheckoutBtn) {
     });
   });
 
-  // Пошук із підсвіткою
   if (searchInput) {
     searchInput.addEventListener('input', () => {
       const query = searchInput.value.toLowerCase();
@@ -218,7 +201,6 @@ if (cancelCheckoutBtn) {
     });
   }
 
-  // Ініціалізація кнопки "Усі"
   const allButton = document.querySelector('.category-btn[data-category="all"]');
   if (allButton) {
     allButton.addEventListener('click', () => {
@@ -229,7 +211,6 @@ if (cancelCheckoutBtn) {
     console.warn('Кнопка "Усі" не знайдена');
   }
 
-  // Завантаження даних
   if (categoryFilter && catalogContent) {
     fetch('../data/data.json')
       .then(response => response.json())
@@ -303,7 +284,6 @@ if (cancelCheckoutBtn) {
     });
   }
 
-  // Фільтрація за категорією
   function filterByCategory(dataFile) {
     console.log('filterByCategory викликано з dataFile:', dataFile);
     const items = dataFile === 'all' ? allItems : allItems.filter(item => item.category === getCategoryName(dataFile));
@@ -315,7 +295,6 @@ if (cancelCheckoutBtn) {
     });
   }
 
-  // Фільтрація за пошуком
   function filterCatalog(query) {
     const items = document.querySelectorAll('.catalog-item');
     items.forEach(item => {
@@ -329,7 +308,6 @@ if (cancelCheckoutBtn) {
     });
   }
 
-  // Отримання назви категорії за файлом
   function getCategoryName(dataFile) {
     const categoryMap = {
       'mugs.json': 'Кружки',
@@ -341,7 +319,6 @@ if (cancelCheckoutBtn) {
     return categoryMap[dataFile] || '';
   }
 
-  // Скидання стилів кнопок категорій
   function resetCategoryButtons() {
     const buttons = document.querySelectorAll('.category-btn');
     buttons.forEach(btn => {
