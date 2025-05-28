@@ -16,6 +16,8 @@ function initializeGame() {
   startButton = document.getElementById('startButton');
   volumeSlider = document.getElementById('volume');
   musicToggle = document.getElementById('musicToggle');
+  restartBtn = document.getElementById('restartBtn');
+  returnBtn = document.getElementById('returnBtn');
   shootSound = new Audio('../game/sounds/shoot.mp3');
   explosionSound = new Audio('../game/sounds/death.mp3');
   gameOverSound = new Audio('../game/sounds/playerDeath.mp3');
@@ -59,6 +61,8 @@ function initializeGame() {
     if (event.code === 'Space') spacePressed = false;
   });
   startButton.addEventListener('click', startGame);
+  restartBtn.addEventListener('click', restartGame);
+  returnBtn.addEventListener('click', returnToMenu);
   volumeSlider.addEventListener('input', setVolume);
 
   window.addEventListener('resize', () => {
@@ -518,7 +522,7 @@ function checkCollisions() {
       gameStarted = false;
       gameOverElement.style.display = 'flex';
       finalScoreElement.textContent = score;
-      if (score>=100){
+      if (score>=1000){
         ticket.style.display= 'block';
       }
       gameOverSound.play().catch(() => {});
@@ -536,7 +540,7 @@ function checkCollisions() {
       gameStarted = false;
       gameOverElement.style.display = 'flex';
       finalScoreElement.textContent = score;
-      if (score>=100){
+      if (score>=1000){
         ticket.style.display= 'block';
       
       }
