@@ -2,12 +2,15 @@ let canvas, ctx, scoreElement, gameOverElement, finalScoreElement, startScreen, 
 let shootSound, explosionSound, gameOverSound, backgroundMusic1, backgroundMusic2, backgroundMusic3;
 let player, enemies, enemyBullets, score, gameOver, gameStarted, keys, particles, enemyBulletSpeed, wave, currentMusic;
 let backgroundMusics, animationFrameId;
+let spacePressed = false;
+let bossSpawned = false;
 
 function initializeGame() {
   canvas = document.getElementById('gameCanvas');
   ctx = canvas.getContext('2d');
   scoreElement = document.getElementById('score');
   gameOverElement = document.getElementById('gameOver');
+  ticket = document.getElementById('ticket');
   finalScoreElement = document.getElementById('finalScore');
   startScreen = document.getElementById('startScreen');
   startButton = document.getElementById('startButton');
@@ -26,8 +29,8 @@ function initializeGame() {
   player = {
     x: canvas.width / 2 - 25,
     y: canvas.height - 50,
-    width: 50,
-    height: 50,
+    width: (canvas.width * 0.03),
+    height: (canvas.height * 0.09),
     speed: 5,
     bullets: []
   };
@@ -42,12 +45,18 @@ function initializeGame() {
   wave = 1;
   backgroundMusics = [backgroundMusic1, backgroundMusic2, backgroundMusic3];
 
-  document.addEventListener('keydown', e => {
-    keys[e.code] = true;
-    if (e.code === 'Space' && !gameOver) shoot();
+  document.addEventListener('keydown', (event) => {
+    if (event.code === 'ArrowLeft') keys.ArrowLeft = true;
+    if (event.code === 'ArrowRight') keys.ArrowRight = true;
+    if (event.code === 'Space' && !spacePressed) {
+      spacePressed = true;
+      shoot();
+    }
   });
-  document.addEventListener('keyup', e => {
-    keys[e.code] = false;
+  document.addEventListener('keyup', (event) => {
+    if (event.code === 'ArrowLeft') keys.ArrowLeft = false;
+    if (event.code === 'ArrowRight') keys.ArrowRight = false;
+    if (event.code === 'Space') spacePressed = false;
   });
   startButton.addEventListener('click', startGame);
   volumeSlider.addEventListener('input', setVolume);
@@ -58,6 +67,9 @@ function initializeGame() {
     player.x = canvas.width / 2 - 25;
     player.y = canvas.height - 50;
   });
+
+  // Додаємо функцію для малювання зірки
+  
 }
 
 function stopGame() {
@@ -127,7 +139,25 @@ function spawnEnemies() {
     { xMin: canvas.width - 550, xMax: canvas.width - 250 }
   ];
   const zone = spawnZones[Math.floor(Math.random() * spawnZones.length)];
-  if (wave === 4) {
+
+  if (wave === 7 && !bossSpawned) {
+      bossSpawned = true;
+    enemies.push({
+      type: 'boss',
+      x: canvas.width / 2 - 50,
+      y: 100,
+      width: 100,
+      height: 100,
+      speed: 1,
+      health: 100,
+      attackTimer: 0,
+      currentAttack: 0,
+      summonCooldown: 0,
+      summonedCount: 0,
+      attacks: [shootBullets, summonEnemies],
+      angle: 0
+    });
+  } else if (wave === 4) {
     const positions = [
       { x: 0, y: 0 },
       { x: -60, y: 50 }, { x: 60, y: 50 },
@@ -138,8 +168,8 @@ function spawnEnemies() {
       enemies.push({
         x: zone.xMin + 200 + pos.x,
         y: 50 + pos.y,
-        width: 40,
-        height: 40,
+        width: (canvas.width * 0.04),
+        height: 20,
         speed: 2.8 + wave * 0.2,
         angle: 0,
         spawnZone: zone,
@@ -158,8 +188,8 @@ function spawnEnemies() {
       enemies.push({
         x: zone.xMin + 100 + pos.x,
         y: 50 + pos.y,
-        width: 40,
-        height: 40,
+        width: (canvas.width * 0.03),
+        height: canvas.height * 0.05,
         speed: 2.5 + wave * 0.2,
         angle: 0,
         spawnZone: zone,
@@ -175,8 +205,8 @@ function spawnEnemies() {
         enemies.push({
           x: zone.xMin + i * 80,
           y: 50 + j * 80,
-          width: 40,
-          height: 40,
+          width: (canvas.width * 0.02) + 20,
+          height: 10,
           speed: 2 + wave * 0.2,
           angle: 0,
           spawnZone: zone,
@@ -186,7 +216,28 @@ function spawnEnemies() {
     }
   }
 }
-
+function drawStar(cx, cy, spikes, outerRadius, innerRadius, color) {
+    let rot = Math.PI / 2 * 3;
+    let x = cx;
+    let y = cy;
+    let step = Math.PI / spikes;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy - outerRadius);
+    for (let i = 0; i < spikes; i++) {
+      x = cx + Math.cos(rot) * outerRadius;
+      y = cy + Math.sin(rot) * outerRadius;
+      ctx.lineTo(x, y);
+      rot += step;
+      x = cx + Math.cos(rot) * innerRadius;
+      y = cy + Math.sin(rot) * innerRadius;
+      ctx.lineTo(x, y);
+      rot += step;
+    }
+    ctx.lineTo(cx, cy - outerRadius);
+    ctx.closePath();
+    ctx.fillStyle = color;
+    ctx.fill();
+  }
 function drawPlayer() {
   ctx.fillStyle = '#00FFFF';
   ctx.shadowBlur = 20;
@@ -201,7 +252,9 @@ function drawPlayer() {
 }
 
 function drawEnemy(enemy) {
-  if (enemy.type === 'butterfly') {
+  if (enemy.type === 'boss') {
+    drawStar(enemy.x + enemy.width / 2, enemy.y + enemy.height / 2, 5, 50, 20, '#7284a5');
+  } else if (enemy.type === 'butterfly') {
     ctx.fillStyle = '#FF0000';
     ctx.shadowBlur = 15;
     ctx.shadowColor = '#FF0000';
@@ -261,7 +314,48 @@ function shoot() {
     height: 10,
     speed: -10
   });
+  shootSound = new Audio('../game/sounds/shoot.mp3');
   shootSound.play().catch(() => {});
+}
+
+function shootBullets(enemy) {
+  const numBullets = 8;
+  const angleStep = 2 * Math.PI / numBullets;
+  for (let i = 0; i < numBullets; i++) {
+    const angle = i * angleStep;
+    enemyBullets.push({
+      x: enemy.x + enemy.width / 2,
+      y: enemy.y + enemy.height / 2,
+      width: 5,
+      height: 5,
+      speedX: Math.cos(angle) * 3,
+      speedY: Math.sin(angle) * 3
+    });
+  }
+}
+
+function summonEnemies(enemy) {
+  if (enemy.summonCooldown > 0) {
+    enemy.summonCooldown--;
+    return;
+  }
+
+  if (enemy.summonedCount >= 15) return; 
+
+  for (let i = 0; i < 3; i++) {
+    enemies.push({
+      x: enemy.x + Math.random() * 100 - 50,
+      y: enemy.y + Math.random() * 100 - 50,
+      width: (canvas.width * 0.02) + 20,
+      height: 10,
+      speed: 2 + wave * 0.2,
+      angle: 0,
+      type: 'regular'
+    });
+    enemy.summonedCount++;
+  }
+
+  enemy.summonCooldown = 60; 
 }
 
 function updateBullets() {
@@ -270,16 +364,31 @@ function updateBullets() {
     bullet.y += bullet.speed;
     drawBullet(bullet);
   });
-  enemyBullets = enemyBullets.filter(bullet => bullet.y < canvas.height);
+  enemyBullets = enemyBullets.filter(bullet => bullet.y < canvas.height && bullet.x > 0 && bullet.x < canvas.width);
   enemyBullets.forEach(bullet => {
-    bullet.y += bullet.speed;
+    if (bullet.speedX !== undefined && bullet.speedY !== undefined) {
+      bullet.x += bullet.speedX;
+      bullet.y += bullet.speedY;
+    } else {
+      bullet.y += bullet.speed;
+    }
     drawBullet(bullet);
   });
 }
 
 function updateEnemies() {
   enemies.forEach(enemy => {
-    if (enemy.type === 'butterfly') {
+    if (enemy.type === 'boss') {
+      enemy.angle += 0.02;
+      enemy.x = canvas.width / 2 + Math.sin(enemy.angle) * 200;
+      enemy.attackTimer++;
+      if (enemy.attackTimer > 200) {
+        enemy.currentAttack = (enemy.currentAttack + 1) % enemy.attacks.length;
+        enemy.attackTimer = 0;
+        enemy.summonedCount = 0;
+      }
+      enemy.attacks[enemy.currentAttack](enemy);
+    } else if (enemy.type === 'butterfly') {
       if (enemy.isSpiraling) {
         enemy.spiralAngle += 0.2;
         enemy.x += Math.cos(enemy.spiralAngle) * 4;
@@ -336,7 +445,7 @@ function updateEnemies() {
       enemy.x += Math.sin(enemy.angle) * enemy.speed;
       enemy.y += 0.5;
     }
-    if (enemy.y >= canvas.height) {
+    if (enemy.y >= canvas.height && enemy.type !== 'boss') {
       enemy.y = 50;
       if (enemy.x > canvas.width - 520) {
         enemy.x = canvas.width - enemy.x + 50;
@@ -346,15 +455,17 @@ function updateEnemies() {
       enemy.angle = 0.05;
     }
     drawEnemy(enemy);
-    const shootChance = enemy.type === 'butterfly' ? 0.01 : enemy.type === 'bee' ? 0.005 : 0.001;
-    if (Math.random() < shootChance) {
-      enemyBullets.push({
-        x: enemy.x + enemy.width / 2 - 2.5,
-        y: enemy.y + enemy.height,
-        width: 5,
-        height: 10,
-        speed: enemyBulletSpeed
-      });
+    if (enemy.type !== 'boss') {
+      const shootChance = enemy.type === 'butterfly' ? 0.01 : enemy.type === 'bee' ? 0.005 : 0.001;
+      if (Math.random() < shootChance) {
+        enemyBullets.push({
+          x: enemy.x + enemy.width / 2 - 2.5,
+          y: enemy.y + enemy.height,
+          width: 5,
+          height: 10,
+          speed: enemyBulletSpeed
+        });
+      }
     }
   });
 }
@@ -368,14 +479,31 @@ function checkCollisions() {
         bullet.y < enemy.y + enemy.height &&
         bullet.y + bullet.height > enemy.y
       ) {
-        for (let i = 0; i < 10; i++) {
-          particles.push(new Particle(enemy.x + enemy.width / 2, enemy.y + enemy.height / 2));
+        if (enemy.type === 'boss') {
+          enemy.health -= 10;
+          if (enemy.health <= 0) {
+            for (let i = 0; i < 20; i++) {
+              particles.push(new Particle(enemy.x + enemy.width / 2, enemy.y + enemy.height / 2));
+            }
+            enemies.splice(enemyIndex, 1);
+            score += 100;
+            scoreElement.textContent = `Очки: ${score}`;
+            explosionSound = new Audio('../game/sounds/death.mp3');
+            explosionSound.play().catch(() => {});
+            wave++;
+            spawnEnemies();
+          }
+        } else {
+          for (let i = 0; i < 10; i++) {
+            particles.push(new Particle(enemy.x + enemy.width / 2, enemy.y + enemy.height / 2));
+          }
+          enemies.splice(enemyIndex, 1);
+          score += enemy.type === 'butterfly' ? 30 : enemy.type === 'bee' ? 20 : 10;
+          scoreElement.textContent = `Очки: ${score}`;
+          explosionSound = new Audio('../game/sounds/death.mp3');
+          explosionSound.play().catch(() => {});
         }
-        enemies.splice(enemyIndex, 1);
         player.bullets.splice(bulletIndex, 1);
-        score += enemy.type === 'butterfly' ? 30 : enemy.type === 'bee' ? 20 : 10;
-        scoreElement.textContent = `Очки: ${score}`;
-        explosionSound.play().catch(() => {});
       }
     });
   });
@@ -390,6 +518,9 @@ function checkCollisions() {
       gameStarted = false;
       gameOverElement.style.display = 'flex';
       finalScoreElement.textContent = score;
+      if (score>=100){
+        ticket.style.display= 'block';
+      }
       gameOverSound.play().catch(() => {});
       stopBackgroundMusic();
     }
@@ -405,6 +536,10 @@ function checkCollisions() {
       gameStarted = false;
       gameOverElement.style.display = 'flex';
       finalScoreElement.textContent = score;
+      if (score>=100){
+        ticket.style.display= 'block';
+      
+      }
       gameOverSound.play().catch(() => {});
       stopBackgroundMusic();
     }
@@ -445,6 +580,7 @@ function gameLoop() {
 
 function startGame() {
   startScreen.style.display = 'none';
+  ticket.style.display= 'none';
   gameStarted = true;
   spawnEnemies();
   setVolume();
@@ -454,10 +590,12 @@ function startGame() {
 
 function returnToMenu() {
   gameOverElement.style.display = 'none';
+  ticket.style.display= 'none';
   startScreen.style.display = 'flex';
   gameOver = false;
   gameStarted = false;
-  player = { x: canvas.width / 2 - 25, y: canvas.height - 50, width: 50, height: 50, speed: 5, bullets: [] };
+  bossSpawned = false;
+  player = { x: canvas.width / 2 - 25, y: canvas.height - 50, width: (canvas.width * 0.03), height: (canvas.height * 0.09), speed: 5, bullets: [] };
   enemies = [];
   enemyBullets = [];
   particles = [];
@@ -470,7 +608,7 @@ function returnToMenu() {
 }
 
 function restartGame() {
-  player = { x: canvas.width / 2 - 25, y: canvas.height - 50, width: 50, height: 50, speed: 5, bullets: [] };
+  player = { x: canvas.width / 2 - 25, y: canvas.height - 50, width: (canvas.width * 0.03), height: (canvas.height * 0.09), speed: 5, bullets: [] };
   enemies = [];
   enemyBullets = [];
   particles = [];
@@ -480,7 +618,9 @@ function restartGame() {
   scoreElement.textContent = `Очки: ${score}`;
   gameOver = false;
   gameStarted = true;
+  bossSpawned = false;
   gameOverElement.style.display = 'none';
+  ticket.style.display= 'none';
   spawnEnemies();
   setVolume();
   playBackgroundMusic();
